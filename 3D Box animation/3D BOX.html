@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Cube Filled with Balls</title>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f5f5f5;
+    }
+
+    /* Cube */
+    .cube {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      transform-style: preserve-3d;
+      transform: rotateX(-20deg) rotateY(30deg);
+    }
+
+    .face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 2px solid rgba(223,134,159,0.5);
+      /* background: rgba(255, 0, 0, 0.5); red cube */
+    }
+    .front  { transform: translateZ(100px); background: rgba(246,197,211,0.3); }
+    .back   { transform: rotateY(180deg) translateZ(100px); background: rgba(246,197,211,0.3);;}
+    .right  { transform: rotateY(90deg) translateZ(100px); background: rgba(246,197,211,0.3);}
+    .left   { transform: rotateY(-90deg) translateZ(100px); background: rgba(246,197,211,0.3);}
+    .top    { transform: rotateX(90deg) translateZ(100px); }
+    .bottom { transform: rotateX(-90deg) translateZ(100px);background: rgba(246,197,211,0.3); }
+
+    /* Balls container INSIDE the cube */
+    .balls {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      transform: rotateX(20deg) rotateY(-30deg); /* counter-rotate so balls look flat inside */
+      transform-origin: center;
+    }
+
+    .ball {
+      position: absolute;
+      width: 50px;   /* bigger balls */
+      height: 50px;
+      border-radius: 50%;
+      opacity: 0;
+      top: -60px;
+      animation: fall 1.5s ease forwards;
+    }
+
+    .ball:nth-child(odd) { background: crimson; }
+    .ball:nth-child(even){ background: royalblue; }
+
+    /* ball positions in a grid (tighter spacing) */
+    .ball:nth-child(1)  { animation-delay: 0s;   --x: 20px;  --y: 140px; }
+    .ball:nth-child(2)  { animation-delay: 0.2s; --x: 70px;  --y: 140px; }
+    .ball:nth-child(3)  { animation-delay: 0.4s; --x: 120px; --y: 140px; }
+    .ball:nth-child(4)  { animation-delay: 0.6s; --x: 30px;  --y: 90px; }
+    .ball:nth-child(5)  { animation-delay: 0.8s; --x: 80px;  --y: 90px; }
+    .ball:nth-child(6)  { animation-delay: 1s;   --x: 130px; --y: 90px; }
+    .ball:nth-child(8)  { animation-delay: 1.2s; --x: -10px;  --y: 140px; }
+    .ball:nth-child(7)  { animation-delay: 1.4s; --x: 80px;  --y: 150px; }
+    .ball:nth-child(9)  { animation-delay: 1.6s; --x: 140px; --y: 50px; }
+
+    @keyframes fall {
+      0%   { top: -60px; left: 50%; opacity: 1; }
+      100% { top: var(--y); left: var(--x); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cube">
+    <div class="face front"></div>
+    <div class="face back"></div>
+    <div class="face right"></div>
+    <div class="face left"></div>
+    <div class="face top"></div>
+    <div class="face bottom"></div>
+
+    <div class="balls">
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+    </div>
+  </div>
+</body>
+</html>
